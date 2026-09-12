@@ -200,4 +200,4 @@ This repository focuses on prompt-chain design and safety architectures. In ente
 - [x] **Prompt Library & Test Specifications**: [`support_prompt_library.md`](file:///c:/Users/HP/OneDrive/Desktop/flex-time-customer-support/support_prompt_library.md)
 - [x] **Conversations Portfolio**: [`conversations_portfolio.md`](file:///c:/Users/HP/OneDrive/Desktop/flex-time-customer-support/conversations_portfolio.md)
 - [x] **Technical Documentation**: [`chatbot_documentation.md`](file:///c:/Users/HP/OneDrive/Desktop/flex-time-customer-support/chatbot_documentation.md)
-- [ ] **Loom Video Walkthrough**: [Insert Loom Video Link Here]
+- [x] **Loom Video Walkthrough**: [https://www.loom.com/share/e638cfda692a4883ac7a4205aae49037](https://www.loom.com/share/e638cfda692a4883ac7a4205aae49037)

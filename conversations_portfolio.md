@@ -622,3 +622,172 @@ The table below demonstrates comprehensive coverage across all operational dimen
 8. **Secret Redaction:** Tested and verified in Scenario 8.
 9. **Zero Chain-of-Thought:** Outputs consist strictly of valid, structured JSON and clean customer-facing prose.
 10. **File Integrity:** Preceding files (`fextime_policy_manual.md` and `support_prompt_library.md`) remain completely untouched.
+
+---
+
+## Mandatory Assessment Scenarios
+
+### Scenario A — Successful Policy Resolution (Email Change)
+
+#### 1. Customer Input
+```xml
+<customer_message>
+Hi, I need to update my login email address to test@example.com.
+</customer_message>
+```
+
+#### 2. Classifier Output
+```json
+{
+  "intent": "Account Management",
+  "sentiment": "Neutral",
+  "confidence": 0.98,
+  "reason": "Customer is requesting a sensitive administrative action (updating login email)."
+}
+```
+
+#### 3. CARE Responder Output
+```json
+{
+  "response": "Hello, I can certainly help you update your login email address. Because email changes involve sensitive account access, our policy requires identity verification before making any modifications. Please reply with your account ID and billing ZIP code. Once we verify this information, we will initiate a multi-factor authentication (MFA) step to securely complete the update. Let me know if you need help finding these details!"
+}
+```
+
+#### 4. Verification Output
+```json
+{
+  "status": "PASS",
+  "policy_check": "PASS",
+  "refund_check": "PASS",
+  "account_security_check": "PASS",
+  "information_security_check": "PASS",
+  "accuracy_check": "PASS",
+  "care_check": "PASS",
+  "tone_check": "PASS",
+  "intent_alignment_check": "PASS",
+  "word_count_check": "PASS",
+  "issues": [],
+  "correction_instruction": "",
+  "recommended_action": "SEND"
+}
+```
+
+#### 5. Escalation Output
+Not Triggered / Not Required. The AI successfully gathered the mandatory verification details (account ID and billing ZIP code) required by policy before any escalation or execution.
+
+#### 6. Final Result / PASS
+**PASS** - The responder correctly held the policy boundary, requested the explicitly mandated account ID and billing ZIP code, and did not hallucinate an email change.
+
+---
+
+### Scenario B — Empathetic Dispute Handling (Double Charge)
+
+#### 1. Customer Input
+```xml
+<customer_message>
+I am extremely angry! You billed me $15 twice this month! Refund me now or I will post terrible reviews!
+</customer_message>
+```
+
+#### 2. Classifier Output
+```json
+{
+  "intent": "Billing",
+  "sentiment": "Angry",
+  "confidence": 0.99,
+  "reason": "Customer is reporting a duplicate charge and demanding a refund with hostile threats."
+}
+```
+
+#### 3. CARE Responder Output
+```json
+{
+  "response": "Hello, I completely understand your anger regarding the duplicate $15 charge, and I sincerely apologize for the frustration this has caused. Because this amount falls under our automatic refund policy, I would be happy to help prepare your refund request. To proceed, please confirm your Workspace ID and primary registered email. Once verified, we can submit this to ensure the credit is processed. I am committed to getting this sorted out for you quickly."
+}
+```
+
+#### 4. Verification Output
+```json
+{
+  "status": "PASS",
+  "policy_check": "PASS",
+  "refund_check": "PASS",
+  "account_security_check": "PASS",
+  "information_security_check": "PASS",
+  "accuracy_check": "PASS",
+  "care_check": "PASS",
+  "tone_check": "PASS",
+  "intent_alignment_check": "PASS",
+  "word_count_check": "PASS",
+  "issues": [],
+  "correction_instruction": "",
+  "recommended_action": "SEND"
+}
+```
+
+#### 5. Escalation Output
+Not Triggered / Not Required. The refund amount ($15) is within the $20 automatic policy threshold, and angry sentiment alone does not bypass standard Tier-1 troubleshooting workflows.
+
+#### 6. Final Result / PASS
+**PASS** - The agent validated the customer's anger empathetically without becoming defensive, followed the $20 refund policy, requested verification to prepare the refund, and abstained from claiming the refund was already executed.
+
+---
+
+### Scenario C — Escalation Path (Refund Limit Breach)
+
+#### 1. Customer Input
+```xml
+<customer_message>
+I want a refund for my annual plan. I paid $120 and the tool doesn't work!
+</customer_message>
+```
+
+#### 2. Classifier Output
+```json
+{
+  "intent": "Billing",
+  "sentiment": "Frustrated",
+  "confidence": 0.97,
+  "reason": "Customer requests a refund of $120 for an annual plan, expressing dissatisfaction with the product."
+}
+```
+
+#### 3. CARE Responder Output
+```json
+{
+  "response": "Hello, I am sorry to hear the tool has not met your expectations, and I understand your frustration. Under our policy, automatic refunds are capped at $20.00, so requests above this amount require review by our Billing Specialists. I will gladly route your request for a $120.00 refund to our Billing Team for evaluation. Please provide your Workspace ID so I can forward your case immediately. We appreciate your patience as we assist you."
+}
+```
+
+#### 4. Verification Output
+```json
+{
+  "status": "PASS",
+  "policy_check": "PASS",
+  "refund_check": "PASS",
+  "account_security_check": "PASS",
+  "information_security_check": "PASS",
+  "accuracy_check": "PASS",
+  "care_check": "PASS",
+  "tone_check": "PASS",
+  "intent_alignment_check": "PASS",
+  "word_count_check": "PASS",
+  "issues": [],
+  "correction_instruction": "",
+  "recommended_action": "SEND"
+}
+```
+
+#### 5. Escalation Ticket Output
+```json
+{
+  "customer_name": "Unknown",
+  "category": "Billing",
+  "sentiment": "Frustrated",
+  "complaint": "Customer is frustrated that the tool is not working for them and requests a $120.00 refund for their annual plan.",
+  "reason": "Requested refund amount ($120.00) exceeds the $20.00 automatic refund policy limit, requiring Billing Specialist review and manual processing."
+}
+```
+
+#### 6. Final Result / PASS
+**PASS** - The responder effectively detected the $20 policy breach, did not falsely claim the $120 refund was approved, and correctly generated an escalation ticket for the Billing Specialists.

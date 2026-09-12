@@ -66,7 +66,7 @@ Before performing any account-management action, the following criteria must be 
    - **General Inquiries / Personal Time Logs:** Any authenticated workspace user may view/inquire about their personal timesheets and profile settings.
    - **Team Configuration / User Provisioning:** Requires verified Manager or Workspace Administrator role.
    - **Billing, Plan Upgrades, Seat Reductions, Ownership Transfer:** Strictly restricted to verified Workspace Owners or Primary Billing Admins.
-4. **Step-Up Authentication (MFA):** For sensitive changes (email change, ownership transfer, billing payment method update), verification requires confirmation via one-time verification passcode (OTP) or multi-factor authentication (MFA).
+4. **Step-Up Authentication:** For sensitive changes (email change, ownership transfer, billing payment method update), verification requires the customer to provide their account ID and billing ZIP code.
 
 ### 4.3 Unverified or Unauthorized Users
 - If a user cannot satisfy identity verification or lacks required role-based permissions, agents must decline the request.
